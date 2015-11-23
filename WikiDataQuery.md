@@ -5,7 +5,7 @@
 
     tree[30][150][17,131] and claim[138:676555]
 
-Etats-Unis (Q30)
+* Etats-Unis (Q30)
 * Contient l'entité administrative (P150)
 * Pays (P17)
 * Situé dans l'entité administrative (P131)
