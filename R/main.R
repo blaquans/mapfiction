@@ -22,7 +22,7 @@ items_by_type <- p840$props$p31 %>%
 get_item(id = 11424)
 
 lieux <- p840$props$p840 %>% 
-  as.data.frame() %>%
+  as.data.frame(stringsAsFactors = FALSE) %>%
   select(item = V1, type = V2, lieu = V3) %>%
   group_by(lieu) %>% 
   dplyr::summarise(n = n()) %>%
@@ -36,6 +36,27 @@ lieux <- p840$props$p840 %>%
 #                    clusterOptions = markerClusterOptions(), 
 #                    stroke = FALSE, fillOpacity = 0.5, 
 #                    popup = ~as.character(lieu))
+
+
+
+lieux_details <- llply(lieux$lieu[1:10], get_item, .progress = "text")
+names(lieux_details) <- paste0("Q", lieux$lieu[1:10])
+
+lieux_details[[1]]$labels$fr$value
+get_frenchlabel <- function(id) {
+  if (is.null(id$labels$fr) == TRUE) {
+    frlabel = ""
+  }
+  else {
+    frlabel = id$labels$fr$value
+  }
+  return(frlabel)
+  }
+
+ldply(lieux_details, get_frenchlabel)
+
+
+
 
 
 

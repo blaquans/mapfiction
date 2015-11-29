@@ -1,16 +1,17 @@
+
 get_latlon <- function(id) {
-  item <- get_item(id = id) 
-  if (is.null(item$claims$P625) == TRUE) {
+  if (is.null(id$claims$P625) == TRUE) {
     latitude <- NA
     longitude <- NA
   }
   else {
-    latitude <- item$claims$P625$mainsnak$datavalue$value$latitude
-    longitude <- item$claims$P625$mainsnak$datavalue$value$longitude
+    latitude <- id$claims$P625$mainsnak$datavalue$value$latitude
+    longitude <- id$claims$P625$mainsnak$datavalue$value$longitude
   }
-  message(paste0("lieu :", id))
-  return(data.frame(lieu=id, latitude=latitude, longitude=longitude))
+  return(data.frame(latitude=latitude, longitude=longitude))
 }
 
-get_latlon(id=84)
-get_latlon(id=1999)
+lieux_details[[1]]$claims$P625$mainsnak$datavalue$value$latitude
+
+get_latlon(id=lieux_details[[1]])
+ldply(lieux_details, get_latlon)
