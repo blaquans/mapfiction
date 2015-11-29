@@ -11,3 +11,5 @@ Mapfiction : La carte des lieux de fiction
 * [WikiDataQuery](https://wdq.wmflabs.org/api_documentation.html)
 * [WikiData Query Service](https://query.wikidata.org/)
 * Leaflet
+
+* https://github.com/nichtich/wdq
