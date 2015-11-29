@@ -6,6 +6,8 @@ library("WikidataR")
 library("plyr")
 library("leaflet")
 library("scales")
+library(htmlwidgets)
+library(DT)
 
 p840 <- read_lines("p840.json") %>% fromJSON()
 names(p840$props) %<>% paste0("p", .)
@@ -28,65 +30,57 @@ lieux <- p840$props$p840 %>%
   dplyr::summarise(n = n()) %>%
   arrange(-n) 
 
-# lieux_geocod <- ldply(lieux$lieu[1:100], get_latlon, .progress = "text")
-# lieux_geocod %>% 
-#   leaflet() %>%
-#   addTiles() %>% 
-#   addCircleMarkers(~longitude, ~latitude, 
-#                    clusterOptions = markerClusterOptions(), 
-#                    stroke = FALSE, fillOpacity = 0.5, 
-#                    popup = ~as.character(lieu))
+lieux_details <- llply(lieux$lieu[1:100], get_item, .progress = "text")
+names(lieux_details) <- paste0("Q", lieux$lieu[1:100])
+save(lieux_details, file = "data/lieux_details.Rda")
 
-
-
-lieux_details <- llply(lieux$lieu[1:10], get_item, .progress = "text")
-names(lieux_details) <- paste0("Q", lieux$lieu[1:10])
-
+load("data/lieux_details.Rda")
+lieux$.id <- paste0("Q", lieux$lieu)
 lieux_details[[1]]$labels$fr$value
-get_frenchlabel <- function(id) {
-  if (is.null(id$labels$fr) == TRUE) {
-    frlabel = ""
-  }
-  else {
-    frlabel = id$labels$fr$value
-  }
-  return(frlabel)
-  }
 
-ldply(lieux_details, get_frenchlabel)
+source("R/get_frenchlabel.R")
+lieux_label <- ldply(lieux_details, get_frenchlabel)
+lieux %<>% left_join(lieux_label, id = ".id")
 
+source("R/get_latlon.R")
+lieux_latlon <- ldply(lieux_details, get_latlon)
+lieux %<>% left_join(lieux_latlon, id = ".id")
 
-
-
-
-
-lieux_details <- ldply(lieux$lieu[1:500], get_details, .progress = "text")
-lieux_details %<>% left_join(lieux, by = "lieu")
-
-lieux_details %>% 
+mapfiction1 <- lieux %>% 
   leaflet() %>%
   addTiles() %>% 
-  addCircleMarkers(~longitude, ~latitude, radius = ~rescale(n), 
+  addCircleMarkers(~longitude, ~latitude, 
                    clusterOptions = markerClusterOptions(), 
                    stroke = FALSE, fillOpacity = 0.5, 
                    popup = ~paste0(as.character(frlabel), 
                                    " :", as.character(n)))
 
-
+saveWidget(mapfiction1, 
+           file = "~/Documents/paulant/mapfiction/html/mapfiction1.html", 
+           selfcontained = TRUE)
 
 items <- p840$props$p840 %>% 
-  as.data.frame() %>%
+  as.data.frame(stringsAsFactors = FALSE) %>%
   select(item = V1, type = V2, lieu = V3)
+items %<>% left_join(lieux, by = "lieu")  
 
-items_geocode <- left_join(items, lieux_geocod, by = "lieu")  
-
-items_geocode %>% 
+mapfiction2 <- items %>% 
   leaflet() %>%
   addTiles() %>% 
   addCircleMarkers(~longitude, ~latitude, 
                    color = "navy", 
                    clusterOptions = markerClusterOptions(), 
-                   stroke = FALSE, fillOpacity = 0.5)
+                   stroke = FALSE, fillOpacity = 0.5, 
+                   popup = ~paste0(as.character(item), ": ", 
+                                   as.character(frlabel)))
+
+saveWidget(mapfiction2, 
+           file = "~/Documents/paulant/mapfiction/html/mapfiction2.html", 
+           selfcontained = TRUE)
 
 
+dt_items <- datatable(items)
+saveWidget(dt_items,
+           file = "~/Documents/paulant/mapfiction/html/dt_items.html", 
+           selfcontained = TRUE)
 
