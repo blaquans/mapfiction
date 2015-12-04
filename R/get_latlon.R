@@ -11,7 +11,3 @@ get_latlon <- function(id) {
   return(data.frame(latitude=latitude, longitude=longitude))
 }
 
-lieux_details[[1]]$claims$P625$mainsnak$datavalue$value$latitude
-
-get_latlon(id=lieux_details[[1]])
-ldply(lieux_details, get_latlon)
