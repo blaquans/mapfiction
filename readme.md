@@ -3,18 +3,8 @@
 
 Mapfiction : La carte des lieux de fiction
 
-<iframe src="html/mapfiction1.html" width="300" height="300">
-  <p>Votre navigateur ne supporte pas l'élément iframe</p>
-</iframe>
-
-<iframe src="html/mapfiction2.html" width="300" height="300">
-  <p>Votre navigateur ne supporte pas l'élément iframe</p>
-</iframe>
-
-<iframe src="html/dt_items.html" width="300" height="300">
-  <p>Votre navigateur ne supporte pas l'élément iframe</p>
-</iframe>
-
+- [Table des lieux de fiction](http://htmlpreview.github.io/?https://github.com/blaquans/mapfiction/blob/master/html/dt_items.html)
+- [Carte des lieux de fiction](https://github.com/blaquans/mapfiction/blob/master/html/map_location.html)
 
 ### Sources
 
@@ -24,5 +14,4 @@ Mapfiction : La carte des lieux de fiction
 * [WikiDataQuery](https://wdq.wmflabs.org/api_documentation.html)
 * [WikiData Query Service](https://query.wikidata.org/)
 * Leaflet
-
 * https://github.com/nichtich/wdq
