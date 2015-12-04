@@ -2,6 +2,7 @@
 load("data/df_location.Rda")
 
 map_location <- df_location %>% 
+  filter(is.na(longitude) == FALSE) %>% 
   leaflet() %>%
   addTiles() %>%
   setView(lng = 2, lat = 47, zoom = 4) %>% 
@@ -10,16 +11,12 @@ map_location <- df_location %>%
                    popup = ~paste0(as.character(frlabel), 
                                    " :", as.character(n)))
 
+map_location
 saveWidget(map_location, 
            file = "~/Documents/perso/mapfiction/html/map_location.html", 
            selfcontained = TRUE)
 
 
-get_item(id = 142) %>% get_latlon()
-
-
-library(ggmap)
-
-ggmap() + 
-  geom_point(data = map_location, 
-             mapping = aes(x = longitude, y = latitude)) 
+df_location %>% 
+  ggplot() + 
+  geom_point(mapping = aes(x = longitude, y = latitude)) 
