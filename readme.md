@@ -1,17 +1,20 @@
+## Mapfiction : La carte des lieux de fiction
 
-## Mapfiction
+*Mapfiction est une cartographie des lieux de fictions à partir de la propriété **Lieu du récit** (P840) de Wikidata*
 
-Mapfiction : La carte des lieux de fiction
-
-- [Table des lieux de fiction](http://htmlpreview.github.io/?https://github.com/blaquans/mapfiction/blob/master/html/dt_items.html)
 - [Carte des lieux de fiction](http://htmlpreview.github.io/?https://github.com/blaquans/mapfiction/blob/master/html/map_location.html)
+- [Table des lieux de fiction](http://htmlpreview.github.io/?https://github.com/blaquans/mapfiction/blob/master/html/dt_items.html)
 
-### Sources
+## Data
 
-* Wikidata : Propriété 840
+* Wikidata.org, licence CC-BY
 
 ### Tools
-* [WikiDataQuery](https://wdq.wmflabs.org/api_documentation.html)
-* [WikiData Query Service](https://query.wikidata.org/)
+
+* [WikiDataQuery](https://wdq.wmflabs.org/api_documentation.html), by Magnus Manske
 * Leaflet
+
+## Test
+
+* [WikiData Query Service](https://query.wikidata.org/)
 * https://github.com/nichtich/wdq

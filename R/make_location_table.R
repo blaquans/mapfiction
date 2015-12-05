@@ -9,7 +9,6 @@ df_location <- p840$props$p840 %>%
   arrange(-n) %>% 
   filter(location != "-2")
 
-
 is.negative <- function (x) {(x < 0)}
 #is.negative(x = -1)
 df_location$location %>% as.numeric() %>% is.negative() %>% table()
