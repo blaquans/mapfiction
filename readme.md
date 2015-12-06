@@ -16,5 +16,6 @@
 
 ## Test
 
+* Tester Shiny (problème de déploiement)
 * [WikiData Query Service](https://query.wikidata.org/)
 * https://github.com/nichtich/wdq

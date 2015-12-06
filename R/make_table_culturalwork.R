@@ -6,6 +6,7 @@ df_culturalwork <- p840$props$p840 %>%
 df_culturalwork %<>% left_join(df_location, by = "location")  
 
 df_culturalwork %>% names()
+save(df_culturalwork, file = "data/df_culturalwork.Rda")
 
 list_culturalwork_details <- llply(df_culturalwork$culturalwork[1:100], 
                                get_item, 
@@ -13,7 +14,6 @@ list_culturalwork_details <- llply(df_culturalwork$culturalwork[1:100],
                                .inform = TRUE)
 
 save(list_culturalwork_details, file = "data/list_cullist_culturalwork_details.Rda")
-save(df_culturalwork, file = "data/df_culturalwork.Rda")
 
 ## export into interactive table
 dt_culturalwork <- datatable(df_culturalwork)
