@@ -2,6 +2,8 @@
 
 *Mapfiction est une cartographie des lieux de fictions à partir de la propriété **Lieu du récit** (P840) de Wikidata*
 
+<IFRAME src="http://htmlpreview.github.io/?https://github.com/blaquans/mapfiction/blob/master/html/map_location.html" width="300" height="100"></IFRAME>
+
 - [Carte des lieux de fiction](http://htmlpreview.github.io/?https://github.com/blaquans/mapfiction/blob/master/html/map_location.html)
 - [Table des lieux de fiction](http://htmlpreview.github.io/?https://github.com/blaquans/mapfiction/blob/master/html/dt_items.html)
 
