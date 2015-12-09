@@ -8,7 +8,7 @@ df_culturalwork %<>% left_join(df_location, by = "location")
 df_culturalwork %>% names()
 save(df_culturalwork, file = "data/df_culturalwork.Rda")
 
-list_culturalwork_details <- llply(df_culturalwork$culturalwork[1:100], 
+list_culturalwork_details <- llply(df_culturalwork$culturalwork, 
                                get_item, 
                                .progress = "text", 
                                .inform = TRUE)
