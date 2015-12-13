@@ -1,19 +1,25 @@
-load("data/df_location.Rda")
-
-df_culturalwork <- p840$props$p840 %>% 
-  as.data.frame(stringsAsFactors = FALSE) %>%
-  select(culturalwork = V1, type = V2, location = V3)
-df_culturalwork %<>% left_join(df_location, by = "location")  
-
-df_culturalwork %>% names()
+p840 <- read_lines("p840.json") %>% fromJSON()
+names(p840$props) %<>% paste0("p", .)
+df_culturalwork <- data_frame(culturalwork=p840$items)
+df_culturalwork$.id <- paste0("Q", df_culturalwork$culturalwork)
 save(df_culturalwork, file = "data/df_culturalwork.Rda")
 
 list_culturalwork_details <- llply(df_culturalwork$culturalwork, 
                                get_item, 
                                .progress = "text", 
                                .inform = TRUE)
+names(list_culturalwork_details) <- paste0("Q", df_culturalwork$culturalwork)
+save(list_culturalwork_details, file = "data/list_culturalwork_details.Rda")
 
-save(list_culturalwork_details, file = "data/list_cullist_culturalwork_details.Rda")
+load(file = "data/df_culturalwork.Rda")
+load(file = "data/list_culturalwork_details.Rda")
+
+df_culturalwork_label <- ldply(list_culturalwork_details, get_frenchlabel)
+df_culturalwork %<>% left_join(df_culturalwork_label, id = ".id")
+
+
+## Join with the location table
+#df_culturalwork %<>% left_join(df_location, by = "location")  
 
 ## export into interactive table
 dt_culturalwork <- datatable(df_culturalwork)

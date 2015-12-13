@@ -10,5 +10,4 @@ get_p31 <- function(id) {
   return(data.frame(p31 = p31))
 }
 
-
-get_p31(list_location_details[[1]])
+#get_p31(list_location_details[[1]])

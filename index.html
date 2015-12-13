@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<style>
+@import url(http://fonts.googleapis.com/css?family=PT+Serif|PT+Serif:b|PT+Serif:i);
+
+section {
+  background: #000;
+  color: #fff;
+  padding: 2em;
+  font-family: "PT Serif", Baskerville, Georgia;
+}
+
+#follow {
+  background: none;
+}
+
+.grey {
+  color: #777;
+}
+
+a:link,
+a:visited {
+  color: orange;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+</style>
+
+<section style="text-align:center;padding-top:5em;">
+  <p style="font-size:120%;"><b><a href="https://github.com/blaquans/mapfiction">Mapfiction</a></b> la carte des lieux de fictions.
+  <p class="grey">Scroll down to continue.
+</section>
+
+<section style="padding:5em 9em;">
+<iframe src="html/map_location.html"></iframe>
+</section>
+
+<script src="html/d3.v3.min.js"></script>
+<script src="html/stack.v1.min.js"></script>
+<script>
+
+var mystack = stack()
+    .on("activate", activate)
+    .on("deactivate", deactivate);
+
+</script>
