@@ -11,3 +11,4 @@ get_p31 <- function(id) {
 }
 
 #get_p31(list_location_details[[1]])
+get_p31(list_culturalwork_details[[1]])

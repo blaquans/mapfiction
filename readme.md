@@ -19,6 +19,8 @@ Mapfiction est une cartographie des lieux de fictions à partir de la propriét�
 
 ## Test
 
+* Changer l'approche : 
+  * Partir des oeuvres plutôt que des lieux
 * Tester Shiny (problème de déploiement)
 * [WikiData Query Service](https://query.wikidata.org/)
 * https://github.com/nichtich/wdq
